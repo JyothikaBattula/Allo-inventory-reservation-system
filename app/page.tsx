@@ -1,28 +1,28 @@
 import ReserveButton from "./components/ReserveButton";
 export default async function Home() {
   const products = await fetch(
-    "http://localhost:3000/api/products",
+    "/api/products",
     {
       cache: "no-store",
     }
   ).then((res) => res.json());
 
   const warehouses = await fetch(
-    "http://localhost:3000/api/warehouses",
+    "/api/warehouses",
     {
       cache: "no-store",
     }
   ).then((res) => res.json());
 
   const reservations = await fetch(
-    "http://localhost:3000/api/reservations/list",
+    "/api/reservations/list",
     {
       cache: "no-store",
     }
   ).then((res) => res.json());
 
   const inventory = await fetch(
-    "http://localhost:3000/api/inventory",
+    "/api/inventory",
     {
       cache: "no-store",
     }

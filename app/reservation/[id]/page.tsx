@@ -11,7 +11,7 @@ export default function ReservationPage() {
   const [timeLeft, setTimeLeft] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/reservations/list")
+    fetch("/api/reservations/list")
       .then((res) => res.json())
       .then((data) => {
         const found = data.find(
@@ -59,7 +59,7 @@ export default function ReservationPage() {
 
   async function confirmReservation() {
     const response = await fetch(
-      "http://localhost:3000/api/reservations/confirm",
+      "/api/reservations/confirm",
       {
         method: "POST",
         headers: {
@@ -84,7 +84,7 @@ export default function ReservationPage() {
 
   async function cancelReservation() {
     const response = await fetch(
-      "http://localhost:3000/api/reservations/release",
+       "/api/reservations/release",
       {
         method: "POST",
         headers: {

@@ -7,46 +7,31 @@ import ReserveButton from "./components/ReserveButton";
 export default async function Home() {
   const productsRes = await fetch(
   `${baseUrl}/api/products`,
-  {
-    cache: "no-store",
-  }
+  { cache: "no-store" }
 );
+console.log("PRODUCTS", productsRes.status);
 
-console.log("BASE URL:", baseUrl);
-console.log("PRODUCTS STATUS:", productsRes.status);
-
-const products = await productsRes.json();
- const warehousesRes = await fetch(
+const warehousesRes = await fetch(
   `${baseUrl}/api/warehouses`,
-  {
-    cache: "no-store",
-  }
+  { cache: "no-store" }
 );
-
-console.log("WAREHOUSES STATUS:", warehousesRes.status);
-
-const warehouses = await warehousesRes.json();
+console.log("WAREHOUSES", warehousesRes.status);
 
 const reservationsRes = await fetch(
   `${baseUrl}/api/reservations/list`,
-  {
-    cache: "no-store",
-  }
+  { cache: "no-store" }
 );
+console.log("RESERVATIONS", reservationsRes.status);
 
-console.log("RESERVATIONS STATUS:", reservationsRes.status);
-
-const reservations = await reservationsRes.json();
-
-  const inventoryRes = await fetch(
+const inventoryRes = await fetch(
   `${baseUrl}/api/inventory`,
-  {
-    cache: "no-store",
-  }
+  { cache: "no-store" }
 );
+console.log("INVENTORY", inventoryRes.status);
 
-console.log("INVENTORY STATUS:", inventoryRes.status);
-
+const products = await productsRes.json();
+const warehouses = await warehousesRes.json();
+const reservations = await reservationsRes.json();
 const inventory = await inventoryRes.json();
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 p-8">

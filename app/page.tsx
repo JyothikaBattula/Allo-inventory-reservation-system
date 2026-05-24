@@ -1,28 +1,33 @@
 import ReserveButton from "./components/ReserveButton";
+
+ const baseUrl =
+  process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
 export default async function Home() {
   const products = await fetch(
-    "/api/products",
+  `${baseUrl}/api/products`,
     {
       cache: "no-store",
     }
   ).then((res) => res.json());
 
-  const warehouses = await fetch(
-    "/api/warehouses",
+ const warehouses = await fetch(
+  `${baseUrl}/api/warehouses`,
     {
       cache: "no-store",
     }
   ).then((res) => res.json());
 
   const reservations = await fetch(
-    "/api/reservations/list",
+  `${baseUrl}/api/reservations/list`,
     {
       cache: "no-store",
     }
   ).then((res) => res.json());
 
   const inventory = await fetch(
-    "/api/inventory",
+  `${baseUrl}/api/inventory`,
     {
       cache: "no-store",
     }

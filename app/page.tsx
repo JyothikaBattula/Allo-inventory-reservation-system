@@ -5,34 +5,49 @@ import ReserveButton from "./components/ReserveButton";
     ? `https://${process.env.VERCEL_URL}`
     : "http://localhost:3000";
 export default async function Home() {
-  const products = await fetch(
+  const productsRes = await fetch(
   `${baseUrl}/api/products`,
-    {
-      cache: "no-store",
-    }
-  ).then((res) => res.json());
+  {
+    cache: "no-store",
+  }
+);
 
- const warehouses = await fetch(
+console.log("BASE URL:", baseUrl);
+console.log("PRODUCTS STATUS:", productsRes.status);
+
+const products = await productsRes.json();
+ const warehousesRes = await fetch(
   `${baseUrl}/api/warehouses`,
-    {
-      cache: "no-store",
-    }
-  ).then((res) => res.json());
+  {
+    cache: "no-store",
+  }
+);
 
-  const reservations = await fetch(
+console.log("WAREHOUSES STATUS:", warehousesRes.status);
+
+const warehouses = await warehousesRes.json();
+
+const reservationsRes = await fetch(
   `${baseUrl}/api/reservations/list`,
-    {
-      cache: "no-store",
-    }
-  ).then((res) => res.json());
+  {
+    cache: "no-store",
+  }
+);
 
-  const inventory = await fetch(
+console.log("RESERVATIONS STATUS:", reservationsRes.status);
+
+const reservations = await reservationsRes.json();
+
+  const inventoryRes = await fetch(
   `${baseUrl}/api/inventory`,
-    {
-      cache: "no-store",
-    }
-  ).then((res) => res.json());
+  {
+    cache: "no-store",
+  }
+);
 
+console.log("INVENTORY STATUS:", inventoryRes.status);
+
+const inventory = await inventoryRes.json();
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 p-8">
       <div className="max-w-7xl mx-auto">
